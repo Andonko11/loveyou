@@ -18,15 +18,21 @@ $(document).ready(function () {
 
   function open() {
     envelope.addClass("open").removeClass("close");
-    
-    // пуска музиката
-    music.play();
+
+    // пуска музиката с debug
+    music.play()
+      .then(() => {
+        console.log("Music started");
+      })
+      .catch(err => {
+        console.log("Error:", err);
+      });
   }
 
   function close() {
     envelope.addClass("close").removeClass("open");
-    
-    // спира музиката и връща отначало
+
+    // спира музиката
     music.pause();
     music.currentTime = 0;
   }
